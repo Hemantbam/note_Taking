@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TODO Application</title>
+    <link rel="stylesheet" href="toDoList.css" />
+  </head>
+  <body>
+    <div class="box">
+      <header>
+        <div class="heading"><span>Note Taking</span>simple web application</div>
+      </header>
+      <div class="container">
+        <div class="inputField">
+          <input type="text" id="inputText" />
+        </div>
+        <button onclick="addFunction()">Add</button>
+      </div>
+
+      <div class="todoLists">
+       <h3>Your saved <span>NOTES</span> </h3>
+        <hr>
+        <ul id="todoLists">
+        </ul>
+      </div>
+    </div>
+  </body>
+  <script src="todo.js"></script>
+</html>
