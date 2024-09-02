@@ -8,23 +8,41 @@ function showTodo() {
     console.log(key);
     if (key.startsWith("note")) {
       // check if the key is started with the note letter to verify that we are bringing only the todo list saved datas
+
       let retriveNoteData = localStorage.getItem(key);
-      let savedNotesData = JSON.parse(retriveNoteData); // parse the json string to the object
+      let savedNotesData = JSON.parse(retriveNoteData);
       const tableRow = document.createElement("tr");
       const tableNoteData = document.createElement("td");
       const tableDeleteNote = document.createElement("td");
+      const tableEditNote = document.createElement("td");
+
       const tableDeleteIcon = document.createElement("img");
+      const tableEditIcon = document.createElement("img");
 
       tableNoteData.textContent = savedNotesData;
+
+      //Delete Icon image
       tableDeleteIcon.src = "deleteIcon.png";
       tableDeleteIcon.alt = "Delete Note";
       tableDeleteIcon.style.cursor = "pointer";
-      tableDeleteNote.onclick = function () {
+      tableDeleteIcon.onclick = function () {
         removeNote(key, tableRow);
       };
+
+      //Edit Icon Image
+      tableEditIcon.src = "editIcon.png";
+      tableEditIcon.alt = "Edit Note";
+      tableEditIcon.style.cursor = "pointer";
+      tableEditIcon.onclick = function () {
+        editNote(key, tableNoteData);
+      };
+
       tableDeleteNote.appendChild(tableDeleteIcon);
+      tableEditNote.appendChild(tableEditIcon);
+
       tableRow.appendChild(tableNoteData);
       tableRow.appendChild(tableDeleteNote);
+      tableRow.appendChild(tableEditNote);
 
       noteData.appendChild(tableRow);
     }
@@ -34,7 +52,7 @@ function showTodo() {
 /**Function to add Notes */
 function addFunction() {
   let text = document.getElementById("inputText").value;
-  if (text.trim() != "") {
+  if (text !== "" && text.trim() !== "") {
     // check if the input area is empty or with blank spaces
     const save = JSON.stringify(text);
     noteID = "note" + new Date().getTime();
@@ -49,22 +67,37 @@ function addFunction() {
 
 /**Function to append the Note data */
 function appendData(text, noteID) {
-  let noteData = document.getElementById("todoLists"); // Correct the reference to the to-do list
+  let noteData = document.getElementById("todoLists");
   const tableRow = document.createElement("tr");
   const tableNoteData = document.createElement("td");
   const tableDeleteNote = document.createElement("td");
+  const tableEditNote = document.createElement("td");
+
   const tableDeleteIcon = document.createElement("img");
+  const tableEditIcon = document.createElement("img");
 
   tableNoteData.textContent = text;
+  //Delete Icon image
   tableDeleteIcon.src = "deleteIcon.png";
   tableDeleteIcon.alt = "Delete Note";
   tableDeleteIcon.style.cursor = "pointer";
-  tableDeleteNote.onclick = function () {
+  tableDeleteIcon.onclick = function () {
     removeNote(noteID, tableRow);
   };
+
+  //Edit Icon Image
+  tableEditIcon.src = "editIcon.png";
+  tableEditIcon.alt = "Edit Note";
+  tableEditIcon.style.cursor = "pointer";
+  tableEditIcon.onclick = function () {
+    editNote(noteID, tableRow);
+  };
+
   tableDeleteNote.appendChild(tableDeleteIcon);
+  tableEditNote.appendChild(tableEditIcon);
   tableRow.appendChild(tableNoteData);
   tableRow.appendChild(tableDeleteNote);
+  tableRow.appendChild(tableEditNote);
   noteData.appendChild(tableRow);
 }
 
@@ -72,5 +105,22 @@ function appendData(text, noteID) {
 function removeNote(noteId, row) {
   localStorage.removeItem(noteId);
   row.remove();
+  alert("Note Deleted Sucessfully");
 }
+
+/** Function to update the note */
+function editNote(noteId, tableNoteData) {
+  let updatedText = prompt(
+    "Enter the updated Note here",
+    `${tableNoteData.textContent}`
+  );
+  if (updatedText !== null && updatedText.trim() !== "") {
+    localStorage.setItem(noteId, JSON.stringify(updatedText));
+    tableNoteData.textContent = updatedText;
+    alert("Note Updated Sucessfully :)");
+  } else if (updatedText == "") {
+    alert("Sorry we can't update your note :(");
+  }
+}
+
 window.onload = showTodo;
