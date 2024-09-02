@@ -73,10 +73,41 @@ button {
     border-radius: 10px;
     border: none;
 }
-.todoLists{
+
+.todoLists {
     color: aliceblue;
+
 }
-@media screen and (max-width:1024px){
+
+table,
+th,
+td {
+    border: 1px solid white;
+    border-collapse: collapse;
+    padding: 2px 40px 2px 40px;
+    width: 300px;
+    table-layout: fixed;
+    margin-bottom: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+td,
+img {
+    height: 30px;
+    width: 30px;
+}
+
+th {
+    background-color: #231942;
+}
+
+@media screen and (max-width:1024px) {
+    .box {
+        width: 550px;
+    }
+
     .heading {
         margin-top: 10px;
         color: beige;
@@ -90,6 +121,7 @@ button {
         height: auto;
         width: auto;
     }
+
     .heading span {
         color: #ef233c;
         font-size: 22px;
@@ -105,6 +137,7 @@ button {
         border-radius: 10px;
         align-items: center;
     }
+
     input {
         width: 350px;
         padding: 5px 5px 5px 0px;
@@ -117,11 +150,27 @@ button {
         border-radius: 10px;
         border: none;
     }
- }
 
- 
+    table,
+    th,
+    td {
+        border: 1px solid white;
+        border-collapse: collapse;
+        padding: 2px 117px 2px 117px;
+        border-style: inset;
+        margin-bottom: 20px;
+
+    }
+
+    img {
+        height: 24px;
+        width: 24px;
+    }
+}
+
+
 @media screen and (max-width: 480px) {
-    .box{
+    .box {
         border: 1px solid ghostwhite;
         border-radius: 10px;
         width: 300px;
@@ -129,6 +178,7 @@ button {
         margin: 5% 0px 0px 0px;
         padding: 0px 10px 0px 10px;
     }
+
     .heading {
         margin-top: 10px;
         gap: 5px;
@@ -140,11 +190,13 @@ button {
         height: auto;
         width: 300px;
     }
+
     .heading span {
         color: #ef233c;
         font-size: 16px;
         font-weight: 900;
     }
+
     .container {
         margin: 20px 0px 0px 0px;
         padding: 20px 20px 20px 20px;
@@ -154,7 +206,7 @@ button {
         border-radius: 10px;
         margin-bottom: 10px;
         align-items: center;
-    
+
     }
 
     input {
@@ -169,5 +221,19 @@ button {
         border-radius: 10px;
         border: none;
     }
-}
 
+    table,
+    th,
+    td {
+        border: 1px solid white;
+        border-collapse: collapse;
+        padding: 2px 47px 2px 47px;
+        margin-bottom: 20px;
+
+    }
+
+    img {
+        height: 20px;
+        width: 20px;
+    }
+}
